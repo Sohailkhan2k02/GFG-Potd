@@ -1,4 +1,4 @@
-//T.C : O(nlogn)
+//T.C : O(n*m)
 //S.C : O(1)
 class Solution {
   public:
