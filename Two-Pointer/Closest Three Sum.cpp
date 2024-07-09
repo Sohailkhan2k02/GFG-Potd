@@ -1,4 +1,4 @@
-//T.C : O(n)
+//T.C : O(n*n)
 //S.C : O(1)
 class Solution {
   public:
