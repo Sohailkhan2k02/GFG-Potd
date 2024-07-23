@@ -1,5 +1,6 @@
+//APPROACH -1 
 //T.C : O(n+m)*log(n+m)
-//S.C : O(n+m)
+//S.C : O(n+m)+O(height of root1)+O(height of root2)
 class Solution {
   public:
     // Function to return a list of integers denoting the node
@@ -49,5 +50,49 @@ class Solution {
         for(auto i:r2) res.push_back(i);
         mergeSort(res,0,res.size()-1);
         return res;
+    }
+};
+
+//APPROACH -2
+//T.C : O(n+m)
+//S.C : O(n+m)+O(height of root1)+O(height of root2)
+class Solution {
+  public:
+    void pushLeft(Node* root, stack<Node*>& s) {
+        while (root != NULL) {
+            s.push(root);
+            root = root->left;
+        }
+    }
+    
+    vector<int> merge(Node* root1, Node* root2) {
+        stack<Node*> s1, s2;
+        vector<int> result;
+    
+        pushLeft(root1, s1);
+        pushLeft(root2, s2);
+    
+        while (!s1.empty() || !s2.empty()) {
+            stack<Node*>* s;
+            if (s1.empty()) {
+                s = &s2;
+            } else if (s2.empty()) {
+                s = &s1;
+            } else {
+                if (s1.top()->data <= s2.top()->data) {
+                    s = &s1;
+                } else {
+                    s = &s2;
+                }
+            }
+            
+            Node* n = s->top();
+            s->pop();
+            result.push_back(n->data);
+    
+            pushLeft(n->right, *s);
+        }
+    
+        return result;
     }
 };
