@@ -1,3 +1,5 @@
+//T.C : O(n)
+//S.C : O(n)
 class Solution {
   public:
     Node *copyList(Node *head) {
