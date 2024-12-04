@@ -2,16 +2,16 @@
 //S.C : O(1)
 class Solution {
   public:
-    void sort012(vector<int>& nums) {
+    void sort012(vector<int>& arr) {
         // code here
-        int n=nums.size();
+        int n=arr.size();
         int i=0,j=0,k=n-1;
         while(j<=k){
-            if(nums[j]==0){
-                swap(nums[i++],nums[j++]);
+            if(arr[j]==0){
+                swap(arr[i++],arr[j++]);
             }
-            else if(nums[j]==2){
-                swap(nums[j],nums[k--]);
+            else if(arr[j]==2){
+                swap(arr[j],arr[k--]);
             }
             else j++;
         }
