@@ -1,0 +1,28 @@
+class Solution {
+  public:
+    bool divisibleByK(vector<int>& arr, int k) {
+        // code here
+        vector<bool> dp(k, false);
+
+        for (int it : arr) 
+        {
+            vector<bool> temp(dp);
+            temp[it % k] = true;
+
+            for (int rem = 0; rem < k; rem++) 
+            {
+                if(dp[rem]) 
+                {
+                    temp[(rem + it) % k] = true;
+                }
+            }
+            dp = temp;
+            
+            if (dp[0]) 
+            {
+                return true;
+            }
+        }
+        return false;
+    }
+};
