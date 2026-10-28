@@ -1,0 +1,23 @@
+class Solution {
+  public:
+    char nthCharacter(int n) {
+        // code here
+        long long length = 1;
+                long long count = 9;
+                long long start = 1;
+
+                while (n > length * count) {
+                    n -= length * count;
+                    length++;
+                    count *= 10;
+                    start *= 10;
+                }
+
+                long long targetNumber = start + (n - 1) / length;
+
+                string numberStr = to_string(targetNumber);
+                int digitIndex = (n - 1) % length;
+
+                return numberStr[digitIndex];
+    }
+};
