@@ -1,0 +1,15 @@
+class Solution {
+  public:
+    bool checkWithinK(vector<int>& arr, int k) {
+        // code here
+        vector<int>v(1e5+5,0); int p=0;
+                for(int i=0; i<arr.size(); i++){
+                    v[arr[i]]++;
+                    if(i>k){
+                        v[arr[p++]]--;
+                    }
+                    if(v[arr[i]]>1){return 1;}
+                }
+                return 0;
+    }
+};
