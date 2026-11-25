@@ -1,0 +1,42 @@
+class Solution {
+  public:
+    using ll = long long;
+        static const ll MOD = 1000000007LL;
+
+        // Sum of ceil(x / c) for x = 1 to n.
+        ll prefixSum(ll n, ll c) {
+            if (n <= 0) return 0;
+
+            ll q = n / c;
+            ll rem = n % c;
+
+            return c * q * (q + 1) / 2 + rem * (q + 1);
+        }
+
+    public:
+        int minTime(int a, int b, int d, int l, int r) {
+
+            ll cnt = r - l + 1;
+
+            // First part: sum of (d - j + 1).
+            ll s1 = cnt * (d + 1LL) - (l + r) * cnt / 2;
+
+            // Second part: contribution of complete cycles.
+            ll c = a - b;
+
+            ll h = min((ll)r, (ll)d - a - 1);
+
+            ll s2 = 0;
+
+            if (h >= l) {
+                ll low = d - a - h;
+                ll high = d - a - l;
+
+                s2 = prefixSum(high, c) - prefixSum(low - 1, c);
+            }
+
+            ll ans = s1 + 2LL * b * s2;
+
+            return ans % MOD;
+        }
+};
